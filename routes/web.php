@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.dashboard');
+    return view('admin.home');
 });
 
 Auth::routes();
+
+Route::group([
+    'middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'dashboard',
+], function(){
+
+    Route::view('products', 'admin.products', ['name' => 'lol']);
+
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
