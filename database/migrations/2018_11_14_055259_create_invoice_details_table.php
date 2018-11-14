@@ -15,10 +15,10 @@ class CreateInvoiceDetailsTable extends Migration
     {
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('product_id')->unsigned()->nullable();
-            $table->int('quantity');
+            $table->unsignedInteger('product_id');
+            $table->integer('quantity');
             $table->decimal('price');
-            $table->char('invoice_id')->unsigned()->nullable();
+            $table->unsignedInteger('invoice_id');
             $table->timestamps();
 
             $table->foreign('product_id')

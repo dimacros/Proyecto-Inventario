@@ -15,14 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('customer_id')->unsigned()->nullable();
-            $table->string('created_at');
-            $table->string('updated_at');
+            $table->unsignedInteger('customer_id');
             $table->decimal('discount');
             $table->decimal('sub_total');
             $table->string('status');
-            $table->string('note');
-            $table->char('user_id')->unsigned()->nullable();
+            $table->longText('note');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
 
             $table->foreign('customer_id')
