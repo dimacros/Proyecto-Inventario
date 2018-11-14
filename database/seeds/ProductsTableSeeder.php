@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -13,8 +14,8 @@ class ProductsTableSeeder extends Seeder
     {
         DB::table('products')-> insert([
         	'name' => str_random(20),
-        	'category_id' => '1',
-        	'price' => '1.99',
+        	'category_id' => 1,
+        	'price' => 1.99,
         ]);
     }
 }
