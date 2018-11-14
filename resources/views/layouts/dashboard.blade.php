@@ -5,19 +5,20 @@
   <meta charset="utf-8" />
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!-- Page Title -->
+  <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- Logo -->
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Paper Dashboard 2 by Creative Tim
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet" />
+  @stack('head')
 </head>
 
 <body class="">
@@ -41,46 +42,40 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="active ">
-            <a href="./dashboard.html">
+        <li class="{{ active('admin.dashboard') }}">
+          <a href="{{ route('admin.dashboard') }}">
               <i class="nc-icon nc-bank"></i>
               <p>Escritorio</p>
             </a>
           </li>
-          <li>
-            <a href="./icons.html">
+          <li class="{{ active('productos.index') }}">
+            <a href="{{ route('productos.index') }}">
               <i class="nc-icon nc-app"></i>
               <p>Productos</p>
             </a>
           </li>
-          <li>
-            <a href="./notifications.html">
+          <li class="{{ active('clientes.index') }} ">
+            <a href="{{ route('clientes.index') }}">
               <i class="nc-icon nc-badge"></i>
               <p>Clientes</p>
             </a>
           </li>
-          <li>
-            <a href="./map.html">
+          <li class="{{ active('facturas.create') }}">
+            <a href="{{ route('facturas.create') }}">
               <i class="nc-icon nc-cart-simple"></i>
               <p>Vender</p>
             </a>
           </li>
-          <li>
-            <a href="./user.html">
+          <li class="">
+            <a href="">
               <i class="nc-icon nc-single-02"></i>
               <p>Mi Perfil</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.html">
+          <li class="{{ active('facturas.index') }}">
+            <a href="{{ route('facturas.index') }}">
               <i class="nc-icon nc-money-coins"></i>
               <p>Facturas</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i class="nc-icon nc-caps-small"></i>
-              <p>Typography</p>
             </a>
           </li>
         </ul>
@@ -166,15 +161,8 @@
   <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script>
   <!--  Notifications Plugin    -->
   <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('js/paper-dashboard.min.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('js/demo.js') }}" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
-    });
-  </script>
+  <!-- Control Center for Now Ui Dashboard -->
+  <script src="{{ asset('js/paper-dashboard.min.js') }}"></script>
+  @stack('scripts')
 </body>
-
 </html>

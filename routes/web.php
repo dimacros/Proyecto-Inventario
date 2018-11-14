@@ -21,8 +21,13 @@ Route::group([
     'middleware' => 'auth', 'namespace' => 'Admin', 'prefix' => 'dashboard',
 ], function(){
 
-    Route::view('products', 'admin.products', ['name' => 'lol']);
+    Route::view('admin', 'admin.dashboard', ['name' => 'lol'])->name('admin.dashboard');
+
+    Route::resources([
+        'categorias' => 'CategoryController',
+        'clientes' => 'CustomerController',
+        'facturas' => 'InvoiceController',
+        'productos' => 'ProductController'
+    ]);
 
 });
-
-Route::get('/home', 'HomeController@index')->name('home');

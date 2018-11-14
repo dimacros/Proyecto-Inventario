@@ -176,7 +176,7 @@ return [
         // Inventario\Providers\BroadcastServiceProvider::class,
         Inventario\Providers\EventServiceProvider::class,
         Inventario\Providers\RouteServiceProvider::class,
-
+        Watson\Active\ActiveServiceProvider::class,
     ],
 
     /*

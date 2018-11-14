@@ -172,3 +172,12 @@
         </div>
   </div>
 @endsection
+@push('scripts')
+<script src="{{ asset('js/demo.js') }}" type="text/javascript"></script>
+<script>
+  $(document).ready(function() {
+    // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+    demo.initChartsPages();
+  });
+</script>
+@endpush
