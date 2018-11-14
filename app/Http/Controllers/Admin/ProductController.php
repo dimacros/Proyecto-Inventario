@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products');
+        return view('admin.products', ['products' => Product::with('category')->get()]);
     }
 
     /**
@@ -36,7 +36,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'product_price' => 'required|numeric|min:0'
+        ]);
+
+        $product = new Product();
+        $product->name = $request->product_name;
+        $product->category_id = $request->category_id;
+        $product->price = $request->product_price;
+        $product->save();
+        return back()->with('status', 'El producto "' . $product->name . '" fue creado con éxito');
     }
 
     /**

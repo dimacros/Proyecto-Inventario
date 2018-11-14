@@ -11,28 +11,31 @@
                 <i class="nc-icon nc-minimal-left"></i> Regresar
             </a>  
         @endcomponent
+        @include('partials.list-errors')
+        @include('partials.message')
         <div class="card ">
             <div class="card-header ">
               <h4 class="card-title">Agregar Producto</h4>
             </div>
-            <div class="card-body ">
-                <form method="#" action="#">
-                  <label>Nombre del Producto</label>
+            <div class="card-body">
+                <form id="add_product" method="POST" action="{{ route('productos.store') }}">
+                  {{ csrf_field() }}
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ingrese el producto">
+                    <label>Nombre del Producto</label>
+                    <input type="text" name="product_name" class="form-control" placeholder="Ingrese el producto">
                   </div>
-                  <label>Categoría</label>
                   <div class="form-group">
-                      <select name="" id="lol"></select>
+                    <label>Categoría</label>
+                    <select name="category_id" id="category_id" style="display:none;"></select>
                   </div>
                   <div class="form-group">
                     <label>Precio</label>
-                    <input type="number" class="form-control">
+                    <input type="number" name="product_price" class="form-control">
                   </div>
                 </form>
             </div>
             <div class="card-footer ">
-              <button type="submit" class="btn btn-info btn-round">Enviar</button>
+              <button type="submit" class="btn btn-info btn-round" form="add_product">Enviar</button>
             </div>
         </div>
     </div>
@@ -41,16 +44,24 @@
 @push('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
   <script>
-    $('#lol').selectize({
-      create: function(input, callback) {
-        $.post("{{ route('categorias.store') }}", {"category_name": input}).donde(callback(response));
-      }, 
-      placeholder: "Seleccione o agregue un nuevo producto",
-      render: {
-        option_create: function(data, escape) {
-          return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
-        }
-      }
+    $.get("{{ route('categorias.index') }}").done(function(categories){
+        $('#category_id').selectize({
+          valueField: "id",
+          labelField: "category_name",
+          searchField: "category_name",
+          placeholder: "Seleccione o agregue una categoría",
+          options: categories,
+          render: {
+            option_create: function(data, escape) {
+              return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+            }
+          },
+          create: function(input, callback) {
+            var data = {"_token": "{{ csrf_token() }}", "category_name": input};
+            var url = "{{ route('categorias.store') }}";
+            $.post(url, data).done(callback);
+          }
+        });
     });
   </script>
 @endpush

@@ -16,20 +16,22 @@
                 <tr>
                   <th>Nombre</th>
                   <th>Categoría</th>
-                  <th>Precio</th>
+                  <th class="text-center">Precio</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Example</td>
-                  <td>Bebidas</td>
-                  <td>S/. 10.20</td>
-                  <td>
-                    <button class="btn btn-primary">Editar</button>
-                    <button class="btn btn-danger">Eliminar</button>
-                  </td>
-                </tr>
+                @foreach ($products as $product)
+                  <tr>
+                    <td>{{ $product->name }}</td>
+                    <td>{{ $product->category->name }}</td>
+                    <td class="text-center">{{ $product->price }}</td>
+                    <td class="text-right">
+                      <button class="btn btn-primary">Editar</button>
+                      <button class="btn btn-danger">Eliminar</button>
+                    </td>
+                  </tr>                    
+                @endforeach
               </tbody>
             </table>
           </div>

@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $list_categories = Category::all(['id', 'name AS category_name']);
+        return response()->json($list_categories);
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +37,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json(['value' => 'fuck men', 'text' => 'asdasdasdsa LA CTM']);
+        $category = Category::firstOrCreate(['name' => $request->category_name]);
+        return response()->json(['id' => $category->id, 'category_name' => $category->name]);
     }
 
     /**

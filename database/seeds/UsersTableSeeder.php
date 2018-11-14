@@ -20,8 +20,9 @@ class UsersTableSeeder extends Seeder
         	'password' => bcrypt('secret'),
         ]);
         /*
-        factory(app\User::class, 10)->create()->each(function ($user) {
-        $user->posts()->save(factory(App\Post::class)->make());
-        });*/
+        factory(Inventario\User::class, 100)->create()->each(function ($user) {
+            $user->invoices()->save(factory(Inventario\Invoice::class)->make());
+        });
+        */
     }
 }
