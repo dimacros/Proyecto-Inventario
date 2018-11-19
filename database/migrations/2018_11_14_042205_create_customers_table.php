@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('full_name');
             $table->char('phone', 12);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

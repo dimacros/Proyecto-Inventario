@@ -25,10 +25,10 @@ class CreateInvoicesTable extends Migration
 
             $table->foreign('customer_id')
                   ->references('id')->on('customers')
-                  ->onUpdate('cascade')->onDelete('cascade');
+                  ->onUpdate('cascade');
             $table->foreign('user_id')
                   ->references('id')->on('users')
-                  ->onUpdate('cascade')->onDelete('cascade');
+                  ->onUpdate('cascade');
         });
     }
 

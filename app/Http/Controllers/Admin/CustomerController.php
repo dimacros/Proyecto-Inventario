@@ -15,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.customers', ['customers' => Customer::all()]);
     }
 
     /**
@@ -25,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.customers-create');
     }
 
     /**
@@ -36,7 +36,20 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'document' => 'required|in:dni,ruc',
+            'document_number' => 'required|numeric',
+            'full_name' => 'required|max:255',
+            'phone' => 'nullable|max:12'
+        ]);
+
+        $customer = new Customer();
+        $customer->document = $request->document;
+        $customer->document_number = $request->document_number;
+        $customer->full_name = $request->full_name;
+        $customer->phone = $request->phone;
+        $customer->save();
+        return back()->with('status', 'El cliente "' . $product->full_name . '" fue creado con éxito');
     }
 
     /**

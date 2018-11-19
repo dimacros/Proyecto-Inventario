@@ -23,7 +23,7 @@ class CreateInvoiceDetailsTable extends Migration
 
             $table->foreign('product_id')
                   ->references('id')->on('products')
-                  ->onUpdate('cascade')->onDelete('cascade');
+                  ->onUpdate('cascade');
             $table->foreign('invoice_id')
                   ->references('id')->on('invoices')
                   ->onUpdate('cascade')->onDelete('cascade');

@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
         	'last_name' => str_random(15),
         	'password' => bcrypt('secret'),
         ]);
+        
         /*
         factory(Inventario\User::class, 100)->create()->each(function ($user) {
             $user->invoices()->save(factory(Inventario\Invoice::class)->make());
