@@ -44,24 +44,22 @@
 @push('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
   <script>
-    $.get("{{ route('categorias.index') }}").done(function(categories){
-        $('#category_id').selectize({
-          valueField: "id",
-          labelField: "category_name",
-          searchField: "category_name",
-          placeholder: "Seleccione o agregue una categoría",
-          options: categories,
-          render: {
-            option_create: function(data, escape) {
-              return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
-            }
-          },
-          create: function(input, callback) {
-            var data = {"_token": "{{ csrf_token() }}", "category_name": input};
-            var url = "{{ route('categorias.store') }}";
-            $.post(url, data).done(callback);
-          }
-        });
+    $('#category_id').selectize({
+      valueField: "id",
+      labelField: "category_name",
+      searchField: "category_name",
+      placeholder: "Seleccione o agregue una categoría",
+      options: @json($categories),
+      render: {
+        option_create: function(data, escape) {
+          return '<div class="create">Agregar <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+        }
+      },
+      create: function(input, callback) {
+        var data = {"_token": "{{ csrf_token() }}", "category_name": input};
+        var url = "{{ route('categorias.store') }}";
+        $.post(url, data).done(callback);
+      }
     });
   </script>
 @endpush
