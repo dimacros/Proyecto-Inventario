@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-    return view('admin.home');
-});
+Route::view('/', 'auth.login');
 
 Route::namespace('Auth')->group(function() {
     // Authentication Routes...
