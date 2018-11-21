@@ -45,7 +45,7 @@ class InvoiceController extends Controller
      * @param  \Inventario\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show(int $id)
     {
         //
     }
@@ -56,7 +56,7 @@ class InvoiceController extends Controller
      * @param  \Inventario\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoice $invoice)
+    public function edit(int $id)
     {
         //
     }
@@ -68,7 +68,7 @@ class InvoiceController extends Controller
      * @param  \Inventario\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -79,7 +79,7 @@ class InvoiceController extends Controller
      * @param  \Inventario\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(int $id)
     {
         //
     }

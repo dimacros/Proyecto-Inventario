@@ -15,7 +15,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/paper-dashboard.min.css') }}" rel="stylesheet" />
   @stack('head')
 </head>
 

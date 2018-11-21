@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Faker\Provider\es_PE\Person;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Inventario\User::class, function (Faker $faker) {
+
+    $faker->addProvider(new Person($faker));
+
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,

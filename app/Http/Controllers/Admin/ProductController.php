@@ -2,7 +2,7 @@
 
 namespace Inventario\Http\Controllers\Admin;
 
-use Inventario\Product;
+use Inventario\{Product, Category};
 use Inventario\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products', ['products' => Product::with('category')->get()]);
+        return view('admin.products', [
+            'products' => Product::with('category')->get()
+        ]);
     }
 
     /**
@@ -25,7 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products-create');
+        return view('admin.products-create', [
+            'categories' =>  Category::all(['id', 'name AS category_name'])
+        ]);
     }
 
     /**
@@ -42,12 +46,13 @@ class ProductController extends Controller
             'product_price' => 'required|numeric|min:0'
         ]);
 
-        $product = new Product();
-        $product->name = $request->product_name;
-        $product->category_id = $request->category_id;
-        $product->price = $request->product_price;
-        $product->save();
-        return back()->with('status', 'El producto "' . $product->name . '" fue creado con éxito');
+        $product = Product::create([
+            'name' => $request->product_name,
+            'category_id' => $request->category_id,
+            'price' => $request->product_price
+        ]);
+
+        return back()->with('message', 'El producto "' . $product->name . '" fue creado con éxito');
     }
 
     /**
@@ -56,7 +61,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(int $id)
     {
         //
     }
@@ -67,7 +72,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(int $id)
     {
         //
     }
@@ -79,9 +84,19 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, int $id)
     {
-        //
+        $request->validate([
+            'product_name' => 'required|max:255',
+            'product_price' => 'required|numeric|min:0'
+        ]);
+
+        Product::find($id)->update([
+            'name' => $request->product_name,
+            'price' => $request->product_price
+        ]);
+
+        return back()->with('message', 'El producto ha sido modificado con éxito');
     }
 
     /**
@@ -90,8 +105,10 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(int $id)
     {
-        
+        Product::find($id)->delete();
+
+        return back()->with('message', 'El producto ha sido eliminado con éxito');
     }
 }

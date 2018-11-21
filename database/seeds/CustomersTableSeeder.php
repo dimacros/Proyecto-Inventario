@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Inventario\Customer;
 
 class CustomersTableSeeder extends Seeder
 {
@@ -12,11 +12,7 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('customers')->insert([
-        	'document' => str_random(25),
-        	'document_number' => str_random(15),
-        	'full_name' => str_random(25),
-        	'phone' => '000999888777',
-        ]);
+        factory(Customer::class, 20)->create();
+        factory(Customer::class, 20)->states('company')->create(); 
     }
 }

@@ -6,11 +6,13 @@
 @section('content')
   <div class="row">
     <div class="col-md-8 offset-md-2">
-        @component('partials.card-plain')
+        <div class="card card-plain">
+          <div class="card-body">
             <a href="{{ route('productos.index') }}" class="btn btn-primary">
                 <i class="nc-icon nc-minimal-left"></i> Regresar
             </a>  
-        @endcomponent
+          </div>
+        </div>
         @include('partials.list-errors')
         @include('partials.message')
         <div class="card ">
@@ -30,7 +32,7 @@
                   </div>
                   <div class="form-group">
                     <label>Precio</label>
-                    <input type="number" name="product_price" class="form-control">
+                    <input type="number" name="product_price" class="form-control" step="0.01">
                   </div>
                 </form>
             </div>

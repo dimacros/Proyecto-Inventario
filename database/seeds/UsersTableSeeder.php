@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Inventario\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,19 +11,19 @@ class UsersTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        
-        DB::table('users')->insert([
-        	'email' => str_random(10).'@hotmail.com',
-        	'first_name' => str_random(15),
-        	'last_name' => str_random(15),
-        	'password' => bcrypt('secret'),
+    {   
+        $this->createAdmin();
+    }
+
+    private function createAdmin() {
+
+        User::create([ 
+            'first_name' => 'Admin',
+            'last_name' => '',
+            'email' => 'admin@localhost.com',
+            'password' => bcrypt('123456'), 
+            'remember_token' => str_random(10)
         ]);
-        
-        /*
-        factory(Inventario\User::class, 100)->create()->each(function ($user) {
-            $user->invoices()->save(factory(Inventario\Invoice::class)->make());
-        });
-        */
+    
     }
 }

@@ -37,19 +37,15 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'document' => 'required|in:dni,ruc',
+            'document' => 'required|in:DNI,RUC',
             'document_number' => 'required|numeric',
-            'full_name' => 'required|max:255',
+            'name' => 'required|max:255',
             'phone' => 'nullable|max:12'
         ]);
 
-        $customer = new Customer();
-        $customer->document = $request->document;
-        $customer->document_number = $request->document_number;
-        $customer->full_name = $request->full_name;
-        $customer->phone = $request->phone;
-        $customer->save();
-        return back()->with('status', 'El cliente "' . $product->full_name . '" fue creado con éxito');
+        $customer = Customer::create($request->all());
+
+        return back()->with('message', 'El cliente "' . $customer->name . '" fue creado con éxito');
     }
 
     /**
@@ -58,7 +54,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(int $id)
     {
         //
     }
@@ -69,7 +65,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(int $id)
     {
         //
     }
@@ -81,9 +77,18 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, int $id)
     {
-        //
+        $request->validate([
+            'document' => 'required|in:DNI,RUC',
+            'document_number' => 'required|max:11',
+            'name' => 'required|max:255',
+            'phone' => 'nullable|max:15'
+        ]);
+        
+        $customer = Customer::find($id)->update($request->all());
+
+        return back()->with('message', 'El cliente ha sido modificado con éxito');
     }
 
     /**
@@ -92,8 +97,10 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(int $id)
     {
-        //
+        Customer::find($id)->delete();
+
+        return back()->with('message', 'El cliente ha sido eliminado con éxito');
     }
 }

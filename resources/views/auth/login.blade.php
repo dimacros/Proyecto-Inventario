@@ -12,60 +12,59 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
   <!-- Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="{{ asset('vendor/login/css/util.css') }}" rel="stylesheet" />
-  <link href="{{ asset('vendor/login/css/main.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/login.min.css') }}" rel="stylesheet" />
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url({{ asset('vendor/login/images/bg-01.jpg') }});">
+				<div class="login100-form-title" style="background-image: url({{ asset('img/bg-01.jpg') }});">
 					<span class="login100-form-title-1">
-						Sign In
+						Iniciar Sesión
 					</span>
 				</div>
 
-				<form class="login100-form validate-form">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">Username</span>
-						<input class="input100" type="text" name="username" placeholder="Enter username">
+				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+					{{ csrf_field() }}
+					<div class="wrap-input100 validate-input m-b-26 {{$errors->has('email')?'alert-validate':''}}" 
+					 data-validate="{{$errors->has('email')?$errors->first('email'):''}}">
+						<span class="label-input100">Correo electrónico</span>
+						<input class="input100" type="text" name="email" value="{{ old('email') }}">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Enter password">
+					<div class="wrap-input100 validate-input m-b-18 {{$errors->has('password')?'alert-validate':''}}"
+					 data-validate = "El campo password es obligatorio">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="password">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember" {{ old('remember')?'checked':'' }}>
 							<label class="label-checkbox100" for="ckb1">
-								Remember me
+								Recuérdame
 							</label>
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
+							<a href="{{ route('password.request') }}" class="txt1">
+								¿Perdiste tu contraseña?
 							</a>
 						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
+						<button type="submit" class="login100-form-btn">
+							Ingresar
 						</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	<!--   Core JS Files   -->
-    <script src="{{ asset('js/core/jquery.min.js') }}"></script>
-	<script src="{{ asset('vendor/login/js/main.js') }}"></script>
 </body>
 </html>

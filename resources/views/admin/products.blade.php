@@ -7,9 +7,12 @@
           <a href="{{ route('productos.create') }}" class="btn btn-success">Nuevo Producto</a>
         </div>
       </div>
+      @include('partials.list-errors')
+      @include('partials.message')
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title"> Lista de Productos</h4>
+          <h4 class="card-title"> Lista de Productos</h4> 
+          <hr>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -56,11 +59,11 @@
                       </div>
                       <div class="form-group">
                         <label>Categoría</label>
-                        <input type="text" name="category_name" class="form-control" value="{{$product->category->name}}" readonly>
+                        <input type="text" class="form-control" value="{{$product->category->name}}" readonly>
                       </div>
                       <div class="form-group">
                         <label>Precio</label>
-                        <input type="number" name="product_price" class="form-control" value="{{$product->price}}">
+                        <input type="number" name="product_price" class="form-control" step="0.01" value="{{$product->price}}">
                       </div>                        
                     </form>
                   @endcomponent   
