@@ -54,7 +54,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
         //
     }
@@ -65,7 +65,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit($id)
     {
         //
     }
@@ -77,7 +77,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'document' => 'required|in:DNI,RUC',
@@ -97,7 +97,7 @@ class CustomerController extends Controller
      * @param  \Inventario\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         Customer::find($id)->delete();
 

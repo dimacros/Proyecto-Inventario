@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'auth.login');
+Route::view('/', 'auth.login')->middleware('guest');
 
 Route::namespace('Auth')->group(function() {
     // Authentication Routes...
@@ -30,11 +30,9 @@ Route::group([
 ], function() {
 
     Route::view('admin', 'admin.dashboard', ['name' => 'lol'])->name('admin.dashboard');
-    Route::resources([
-        'categorias' => 'CategoryController',
-        'clientes' => 'CustomerController',
-        'facturas' => 'InvoiceController',
-        'productos' => 'ProductController'
-    ]);
+    Route::resource('categorias', 'CategoryController')->only(['store']);
+    Route::resource('clientes', 'CustomerController');
+    Route::resource('facturas', 'InvoiceController');
+    Route::resource('productos', 'ProductController');
 
 });

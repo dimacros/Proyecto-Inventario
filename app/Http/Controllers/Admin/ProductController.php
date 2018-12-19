@@ -61,7 +61,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
         //
     }
@@ -72,7 +72,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit($id)
     {
         //
     }
@@ -84,7 +84,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'product_name' => 'required|max:255',
@@ -105,7 +105,7 @@ class ProductController extends Controller
      * @param  \Inventario\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         Product::find($id)->delete();
 
