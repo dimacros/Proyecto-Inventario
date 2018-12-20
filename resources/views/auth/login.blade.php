@@ -9,18 +9,18 @@
   <!-- Page Title -->
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Logo -->
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ secure_asset('img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ secure_asset('img/favicon.png') }}">
   <!-- Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="{{ asset('css/login.min.css') }}" rel="stylesheet" />
+  <link href="{{ secure_asset('css/login.min.css') }}" rel="stylesheet" />
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url({{ asset('img/bg-01.jpg') }});">
+				<div class="login100-form-title" style="background-image: url({{ secure_asset('img/bg-01.jpg') }});">
 					<span class="login100-form-title-1">
 						Iniciar Sesión
 					</span>
