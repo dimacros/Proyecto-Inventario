@@ -8,14 +8,14 @@
   <!-- Page Title -->
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Logo -->
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ secure_asset('img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ secure_asset('img/favicon.png') }}">
   <!-- Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('css/paper-dashboard.min.css') }}" rel="stylesheet" />
+  <link href="{{ secure_asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+  <link href="{{ secure_asset('css/paper-dashboard.min.css') }}" rel="stylesheet" />
   @stack('head')
 </head>
 
@@ -28,13 +28,13 @@
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="{{ asset('img/logo-small.png') }}">
+            <img src="{{ secure_asset('img/logo-small.png') }}">
           </div>
         </a>
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
           Creative Tim
           <!-- <div class="logo-image-big">
-            <img src="{{ asset('img/logo-big.png') }}">
+            <img src="{{ secure_asset('img/logo-big.png') }}">
           </div> -->
         </a>
       </div>
@@ -151,16 +151,16 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="{{ asset('js/core/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/core/popper.min.js') }}"></script>
-  <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ secure_asset('js/core/jquery.min.js') }}"></script>
+  <script src="{{ secure_asset('js/core/popper.min.js') }}"></script>
+  <script src="{{ secure_asset('js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ secure_asset('js/plugins/perfect-scrollbar.min.js') }}"></script>
   <!-- Chart JS -->
-  <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script>
+  <script src="{{ secure_asset('js/plugins/chartjs.min.js') }}"></script>
   <!--  Notifications Plugin    -->
-  <script src="{{ asset('js/plugins/bootstrap-notify.js') }}"></script>
+  <script src="{{ secure_asset('js/plugins/bootstrap-notify.js') }}"></script>
   <!-- Control Center for Now Ui Dashboard -->
-  <script src="{{ asset('js/paper-dashboard.min.js') }}"></script>
+  <script src="{{ secure_asset('js/paper-dashboard.min.js') }}"></script>
   @stack('scripts')
 </body>
 </html>
